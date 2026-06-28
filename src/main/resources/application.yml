@@ -1,13 +1,19 @@
 spring:
   application:
     name: clases
-  profiles:
-    active: test
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driver-class-name: ${SPRING_DATASOURCE_DRIVER_CLASS_NAME:com.mysql.cj.jdbc.Driver}
+  jpa:
+    ddl-auto: update
+    show-sql: true
+
 server:
   port: 8083
 
-
-# Habilitación técnica de OpenAPI y Swagger UI para Clases
+# Habilitación técnica de OpenAPI y Swagger UI
 springdoc:
   api-docs: 
     enabled: true
@@ -18,4 +24,4 @@ springdoc:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: ${EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE:http://localhost:8761/eureka/}
